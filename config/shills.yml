@@ -1,0 +1,43 @@
+
+dataset: "movielens"
+
+clean:
+  type_of: "percent"
+  percent: 0.60
+  threshold: 10
+  alpha_i: 3
+  alpha_u: 2
+  min_items: 10
+  min_users: 10
+
+
+tracked_user: 276
+# tracked_user: 272
+
+c_: 20
+n_: 1
+
+attack:
+  type_of: "clone"
+  no_attackers: 40
+  no_targets: 50
+  t_rating: -1
+  place_attack: "last"
+  place_target: "intermittent"
+  no_ratings: 200
+  cloned: 
+    - 303
+    # - 1199
+
+paths:
+  filmtrust: 
+    ratings: "./data/filmtrust/ratings.txt"
+    trust: "./data/filmtrust/trust.txt"
+  ciaodvd: 
+    ratings: "./data/ciaodvd/movie-ratings.txt"
+    trust: "./data/ciaodvd/trusts.txt"
+  epinions:
+    ratings: "./data/epinions/ratings_data.txt"
+    trust: "./data/epinions/trust_data.txt"
+  movielens:
+    ratings: "./data/movielens/u.data"

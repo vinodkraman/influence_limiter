@@ -1,0 +1,29 @@
+
+dataset: "filmtrust"
+
+cleaning:
+  type_of: "percent"
+  percent: 0.90
+  threshold: 10
+
+implicit: False
+
+loss_type: "squared"
+
+metric_type: "accuracy"
+
+no_runs: 1
+
+paths:
+  filmtrust: 
+    ratings: "./data/filmtrust/ratings.txt"
+    trust: "./data/filmtrust/trust.txt"
+  ciaodvd: 
+    ratings: "./data/ciaodvd/movie-ratings.txt"
+    trust: "./data/ciaodvd/trusts.txt"
+  epinions:
+    ratings: "./data/epinions/ratings_data.txt"
+    trust: "./data/epinions/trust_data.txt"
+  movielens:
+    ratings: "./data/movielens/u.data"
+
