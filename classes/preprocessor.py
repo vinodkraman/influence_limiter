@@ -50,6 +50,8 @@ class Preprocessor:
                 entry_list.append(entry)
         return entry_list
 
+    def return_item_list(self):
+        return self.item_dict.keys()
 
     def get_heldout_data(self, users=[], no_users=0, min_no=0, percentage=0.20):
         '''

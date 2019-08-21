@@ -235,10 +235,14 @@ class PeerILRecSys:
             pend_dict = self.pending[(t_user, item)]
             user_ratings = pend_dict['user_ratings']
             raters = list(pend_dict['user_id_idx'].keys()) 
+            print(len(raters))
             delta_reps = {}
             for index, rater in enumerate(raters):
-                peer_index = (index + 1) % len(raters)
+                peer_index = (index + 1) % (len(raters)-1)
+                print(f"peer_index {peer_index}")
                 peer_rater = raters[peer_index]
+                print(f"peer_rater {peer_rater}")
+                print(f"next_peer_index {peer_index + 1}")
                 next_peer_rater = raters[peer_index + 1]
 
                 peer_rating = user_ratings[peer_rater]
