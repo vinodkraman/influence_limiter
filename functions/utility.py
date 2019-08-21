@@ -83,7 +83,31 @@ def run_experiment(recsys, heldout_data, attack_id={}, t_items={}):
 
     return  il_accs, nil_accs, t_il_accs, t_nil_accs, losses_diff, recsys
 
+def generate_item_target_label_priors(item_list, target_label_space):
+    item_to_target_label_prior = {}
+    length = len(target_label_space)
 
+    for item in item_list:
+        p = 1/length
+        prob_vec = (p * np.ones(length)).tolist()
+        item_to_target_label_prior[item] = prob_vec
+
+    return item_to_target_label_prior
+
+def generate_item_conditional_signal_priors(item_list, target_label_space, signal_space):
+    item_conditional_signal_priors = {}
+    signal_space_length = len(signal_space)
+
+    for item in item_list:
+        matrix = []
+        for label in target_label_space:
+            prob_vec = np.random.random(signal_space_length)
+            prob_vec /= prob_vec.sum()
+            matrix.append(prob_vec)
+        matrix = np.transpose(matrix).tolist()
+        item_conditional_signal_priors[item] = matrix
+    
+    return item_conditional_signal_priors
 
 def make_plots(fig_path, losses_diff, il_accs, nil_accs, t_il_accs, t_nil_accs, attack_ids, recsys):
 

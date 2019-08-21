@@ -139,6 +139,16 @@ for run in range(1):
         curr_nil_graph.append(nil_accs[-1])
         curr_t_il_graph.append(t_il_accs[-1])
         curr_t_nil_graph.append(t_nil_accs[-1])
+
+        final_imp_sybil = []
+        tracked_reps, tracked_impact = recsys.return_rep_impacts()
+
+        for key, value in tracked_impact.items():
+            if key <= 0:
+                final_imp_sybil.append(value[-1])
+        
+        sum_clone_impact.append(np.sum(final_imp_sybil))
+        impact_bounds.append(-1 * clones * np.exp(-np.log(c*n)))
    
 
     if len(il_graph) > 0:
@@ -182,4 +192,15 @@ plt.ylabel("Average Accuracy")
 plt.legend()
 plt.title("Recommendation Accuracy for Targeted Items")
 plt.savefig(fig_path + "num_attack_target.png")
+plt.clf()
+
+plt.figure(3)
+x = np.asarray(no_clones)
+plt.plot(x, sum_clone_impact, color='r', label='actual')
+plt.plot(x, impact_bounds, color='b', label='bound')
+plt.xlabel("Number of Clones")
+plt.ylabel("Damage")
+plt.legend()
+plt.title("Recommendation Limited Damage Bound")
+plt.savefig(fig_path + "limited_damage2.png")
 plt.clf()
