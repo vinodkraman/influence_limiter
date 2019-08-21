@@ -67,6 +67,8 @@ il_graph = []
 nil_graph = []
 t_il_graph = []
 t_nil_graph = []
+sum_clone_impact = []
+impact_bounds = []
 no_clones = [0, 1, 5, 10, 20, 30, 40, 50, 69, 80, 100, 120, 150]
 c = 20
 
